@@ -1,0 +1,33 @@
+
+  <% if user_signed_in? %>
+  <%= link_to 'Add Product', new_product_path %>
+  <% end %>
+    <table>
+      <tr>
+        <th>PRODUCT ID</th>
+        <th>USER</th>
+        <th>PRODUCT NAME</th>
+        <th>PRODUCT PRICE</th>
+        <th>VIEW PRODUCT</th>
+        <% if user_signed_in? %>
+          <th>EDIT PRODUCT</th>
+          <th>DELETE PRODUCT</th>
+          <th>ADD COMMENT</th>
+        <% end %>
+      </tr>
+      <% @products.each do |p| %>
+        <tr>
+          <td><%= p.id %></td>
+          <td><%= p.user.full_name %></td>
+          <td><%= p.name %></td>
+          <td><%= p.price %></td>
+          <td><%= link_to 'show', product_path(id: p.id) %></td>
+          <% if user_signed_in? %>
+            <td><%= link_to 'edit', edit_product_path(id: p.id) %></td>
+            <td><%= link_to 'delete', product_path(id: p.id),
+                            method: :delete%></td>
+            <td><%= link_to 'add comment', new_product_comment_path(product_id: p.id) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>

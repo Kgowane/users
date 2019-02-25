@@ -1,0 +1,12 @@
+<h1>Comments</h1>
+
+<h2>Product: <%= @product.name %></h2>
+<p>
+  Comment ID: <%= @comment.id %>
+</p>
+
+<p>
+  Comment: <%= @comment.comment %>
+</p>
+
+<%= link_to 'All Comments', product_path(@product) %>

@@ -1,0 +1,38 @@
+<h1>PRODUCT DETAILS</h1>
+<p>
+ID: <%= @product.id %>
+</p>
+
+<p>
+NAME: <%= @product.name %>
+</p>
+
+<p>
+PRICE: <%= @product.price %>
+</p>
+
+
+<%= link_to 'View All Products', products_path %><br>
+
+<br>
+<table>
+  <tr>
+    <th>COMMENT ID</th>
+    <th>COMMENT</th>
+    <th>DISPLAY</th>
+    <% if current_user.present? %>
+      <th>EDIT</th>
+      <th>DELETE</th>
+    <% end %>
+  </tr>
+  <% @product.comments.each do |c| %>
+    <td><%= c.id %></td>
+    <td><%= c.comment %></td>
+    <td><%= link_to 'show', product_comment_path(@product, c) %></td>
+    <% if current_user.present? %>
+      <td><%= link_to 'edit', edit_product_comment_path(@product, c) %></td>
+      <td><%= link_to 'delete', product_comment_path(@product, c),
+                      method: :delete %></td>
+    <% end %>
+  <% end %>
+</table>
