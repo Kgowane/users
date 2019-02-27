@@ -14,6 +14,12 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :buyer %>
+    <%= f.select :buyer, options_for_select([true,false]),class: 'form-control' %>
+  </div>
+
+
+  <div class="form-group">
     <%= f.label :email %>
     <%= f.email_field :email, class: 'form-control' %>
   </div>

@@ -1,6 +1,8 @@
 
   <% if user_signed_in? %>
-  <%= link_to 'Add Product', new_product_path %>
+    <% unless @user.buyer == true %>
+      <%= link_to 'Add Product', new_product_path %>
+    <% end %>
   <% end %>
     <table>
       <tr>
@@ -8,6 +10,12 @@
         <th>USER</th>
         <th>PRODUCT NAME</th>
         <th>PRODUCT PRICE</th>
+        <th>AMOUNT IN STOCK</th>
+        <% if user_signed_in? %>
+          <% if @user.buyer == true %>
+            <th>Purchase Product</th>
+          <% end %>
+        <% end %>
         <th>VIEW PRODUCT</th>
         <% if user_signed_in? %>
           <th>EDIT PRODUCT</th>
@@ -21,6 +29,12 @@
           <td><%= p.user.full_name %></td>
           <td><%= p.name %></td>
           <td><%= p.price %></td>
+          <td><%= p.quantity %></td>
+          <% if user_signed_in? %>
+            <% if @user.buyer == true %>
+              <td><%= button_to "Buy", :method=> "someButton" %></td>
+            <% end %>
+          <% end %>
           <td><%= link_to 'show', product_path(id: p.id) %></td>
           <% if user_signed_in? %>
             <td><%= link_to 'edit', edit_product_path(id: p.id) %></td>
@@ -31,3 +45,5 @@
         </tr>
       <% end %>
     </table>
+
+<%= paginate @product_pages %>

@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+#kaminarina gem for pagination
+gem 'kaminari'
+
 #Devise Gems
 gem 'devise', '4.6.1'
 #Bootstrap

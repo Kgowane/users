@@ -8,5 +8,8 @@ protected
 
     devise_parameter_sanitizer.permit(:sign_up, keys: [:second_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:second_name])
+
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:buyer])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:buyer])
   end
 end

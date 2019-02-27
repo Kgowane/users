@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
   def index
+    @user = current_user
     @products = Product.all
-
+    @product_pages = Product.order(:name).page params[:page]
   end
 
   def show
