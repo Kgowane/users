@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @product_transactions = ProductTransaction.where(product_id: @product.id)
   end
 
   def new
@@ -39,8 +40,12 @@ class ProductsController < ApplicationController
     @product.quantity -= 1 unless @product.quantity == 0
     @product.save
 
-    
-    redirect_to products_path
+    @product_transaction = ProductTransaction.new(product_id: @product.id, seller_id: @product.user.id, buyer_id: current_user.id, price: @product.price)
+
+    if @product_transaction.save
+      redirect_to products_path, alert: "Purchase Successful: #{@product.name}"
+    else
+      render 'show'
     end
   end
 
@@ -60,3 +65,6 @@ private
   def product_params
       params.require(:product).permit(:name, :price, :quantity)
   end
+
+
+end

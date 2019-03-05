@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 2019_03_04_141214) do
 
   create_table "product_transactions", force: :cascade do |t|
     t.integer "product_id"
-    t.integer "sellers_id"
-    t.integer "buyers_id"
+    t.integer "seller_id"
+    t.integer "buyer_id"
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["buyers_id"], name: "index_product_transactions_on_buyers_id"
+    t.index ["buyer_id"], name: "index_product_transactions_on_buyer_id"
     t.index ["product_id"], name: "index_product_transactions_on_product_id"
-    t.index ["sellers_id"], name: "index_product_transactions_on_sellers_id"
+    t.index ["seller_id"], name: "index_product_transactions_on_seller_id"
   end
 
   create_table "products", force: :cascade do |t|

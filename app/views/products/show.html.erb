@@ -54,3 +54,25 @@ PRICE: <%= @product.price %>
     <% end %>
   <% end %>
 </table>
+
+<% if current_user.present? %>
+  <h1>List of Transactions for </h1>
+
+  <table>
+    <tr>
+      <th>DATE</th>
+      <th>BUYER</th>
+      <th>SELLER</th>
+      <th>PRICE</th>
+    </tr>
+
+    <% @product_transactions.each do |product_transaction| %>
+      <tr>
+        <td><%= product_transaction.date_helper %></td>
+        <td><%= find_user_name(product_transaction.buyer_id) %></td>
+        <td><%= find_user_name(product_transaction.seller_id)  %></td>
+        <td><%= product_transaction.price %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
