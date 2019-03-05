@@ -29,10 +29,18 @@
           <td><%= p.user.full_name %></td>
           <td><%= p.name %></td>
           <td><%= p.price %></td>
-          <td><%= p.quantity %></td>
+          <% if p.quantity != 0 %>
+            <td><%= p.quantity %></td>
+          <% else %>
+            <td>OUT OF STOCK</td>
+          <% end %>
           <% if user_signed_in? %>
             <% if @user.buyer == true %>
-              <td><%= button_to "Buy", :method=> "someButton" %></td>
+              <td>
+                <% unless p.quantity == 0 %>
+                  <%= button_to "Buy #{p.name}", buy_product_products_path(p) %>
+                <% end %>
+              </td>
             <% end %>
           <% end %>
           <td><%= link_to 'show', product_path(id: p.id) %></td>

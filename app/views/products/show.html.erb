@@ -11,6 +11,24 @@ NAME: <%= @product.name %>
 PRICE: <%= @product.price %>
 </p>
 
+<% if user_signed_in? %>
+  <% if current_user.buyer == true %>
+    <td>
+      <% unless @product.quantity == 0 %>
+        <%= button_to "Buy #{@product.name}", buy_product_products_path(@product) %>
+      <% end %>
+    </td><br>
+    <td>Quantity in stock:
+      <% if @product.quantity != 0 %>
+        <%= @product.quantity %>
+      <% else %>
+        OUT OF STOCK
+      <% end %>
+    </td><br><br>
+  <% else %>
+    <%= render 'product_inventory_form' %>
+  <% end %>
+<% end %>
 
 <%= link_to 'View All Products', products_path %><br>
 

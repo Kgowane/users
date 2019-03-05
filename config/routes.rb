@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   # resources :users, only: [:show]
   resources :products do
     resources :comments
+    collection do
+      post '/:id/buy_product', to: 'products#buy_product', as: 'buy_product'
+    end
   end
 end
