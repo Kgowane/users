@@ -1,0 +1,38 @@
+<%= link_to 'View All Products', products_path %>
+
+<h1>List of All Transaction</h1>
+
+<table>
+  <tr>
+    <th>TRANSACTION ID</th>
+    <th>DATE</th>
+    <% if current_user.buyer==true %>
+      <th>PRODUCT BOUGHT</th>
+    <% else %>
+      <th>PRODUCT SOLD</th>
+    <% end %>
+    <th>PRICE</th>
+  </tr>
+
+  <% if current_user.buyer==true %>
+    <% @buyer_transactions.each do |buyer_transaction| %>
+      <tr>
+        <td><%= buyer_transaction.id %></td>
+        <td><%= buyer_transaction.date_helper %></td>
+        <td><%= find_product_name(buyer_transaction.product_id) %></td>
+        <td><%= buyer_transaction.price %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <% @seller_transactions.each do |seller_transaction| %>
+      <tr>
+        <td><%= seller_transaction.id %></td>
+        <td><%= seller_transaction.date_helper %></td>
+        <td><%= find_product_name(seller_transaction.product_id) %></td>
+        <td><%= seller_transaction.price %></td>
+      </tr>
+    <% end %>
+  <% end %>
+
+
+</table>

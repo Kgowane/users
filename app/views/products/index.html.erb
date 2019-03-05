@@ -1,8 +1,12 @@
 
   <% if user_signed_in? %>
     <% unless @user.buyer == true %>
-      <%= link_to 'Add Product', new_product_path %>
+      <%= link_to 'Add Product', new_product_path %><br><br>
     <% end %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to 'View All Transactions', user_path(current_user.id) %><br><br>
   <% end %>
     <table>
       <tr>
