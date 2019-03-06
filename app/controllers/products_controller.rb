@@ -21,7 +21,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    current_user.products.create(product_params)
+    product = current_user.products.create! product_params
+
+    product.image.attach(params[:product][:image])
     redirect_to user_session_path
   end
 
@@ -63,7 +65,7 @@ class ProductsController < ApplicationController
 
 private
   def product_params
-      params.require(:product).permit(:name, :price, :quantity)
+      params.require(:product).permit(:name, :price, :quantity, :image)
   end
 
 

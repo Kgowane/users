@@ -1,4 +1,6 @@
 <h1>PRODUCT DETAILS</h1>
+<%= image_tag @product.image, width: 150, height: 140 if @product.image.attachment.present? %>
+
 <p>
 ID: <%= @product.id %>
 </p>

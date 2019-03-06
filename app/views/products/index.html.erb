@@ -11,8 +11,9 @@
     <table>
       <tr>
         <th>PRODUCT ID</th>
-        <th>USER</th>
+        <th>SELLER</th>
         <th>PRODUCT NAME</th>
+        <th>PRODUCT IMAGE</th>
         <th>PRODUCT PRICE</th>
         <th>AMOUNT IN STOCK</th>
         <% if user_signed_in? %>
@@ -32,6 +33,7 @@
           <td><%= p.id %></td>
           <td><%= p.user.full_name %></td>
           <td><%= p.name %></td>
+          <td><%= p.image.attachment.present? ? image_tag(p.image, width: 70, height: 60) : ''  %></td>
           <td><%= p.price %></td>
           <% if p.quantity != 0 %>
             <td><%= p.quantity %></td>
